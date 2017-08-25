@@ -1,0 +1,60 @@
+<div class="container formBackground">
+<h3>$stylist.getLastName(), $stylist.getFirstName()</h3>
+<form action ="/delete/stylist/:id" method ='post'>
+    <input id="stylistId" name="stylistId" type="hidden" value="$stylist.getId()">
+    <button type = 'submit'> Delete Stylist </button>
+  </form>
+  <h4>Clients</h4>
+      #if($stylist.getClients())
+        <form action="/stylists/delete/$stylist.getId()" method="post">
+
+          #foreach ($client in $stylist.getClients())
+
+              <p>
+                $client.getLastName(), $client.getFirstName() &nbsp;
+                <input type="checkbox" name="deleteClient" value="$client.getId()" id="$client.getId()">
+              </p>
+
+          #end
+
+        <br>
+      <button type="submit" class="btn btn-default" id="delete">
+        Remove Client
+      </button>
+      </form>
+
+      #end
+
+
+<br>
+  <div class="row">
+    <div class="col-md-6">
+      <form action="/stylists/$stylist.getId()" method="post">
+        <div class="form-group">
+          <label for="newClientLastName">Client Last Name</label>
+            <input class="form-control" type="text" name="newClientLastName" id="newClientLastName">
+        </div>
+
+        <div class="form-group">
+          <label for="newClientFirstName">Client First Name</label>
+            <input class="form-control" type="text" name="newClientFirstName" id="newClientFirstName">
+        </div>
+        <button type="submit" class="btn btn-default" id="addClient">
+          Add Client
+        </button>
+      </form>
+
+<br>
+      <p><a href="/stylists">Manage Stylists</a></p>
+      <p>Return to <a href="/">Main Page</a></p>
+</div>
+</div>
+
+<footer>
+<h6>Contact us for an appointment</h6>
+<a href="tel:555-555-1234">555-555-1234</a>
+<br>
+<a href="mailto:manager@epicodussalon.com">manager@epicodussalon.com</a>
+</footer>
+
+</div>
